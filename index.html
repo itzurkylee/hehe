@@ -1,0 +1,483 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Mahal </title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #f7e9e5;
+    color: #633d40;
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+}
+
+/* Background */
+.background {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, #fff5ee 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, #f3d1d1 0%, transparent 40%),
+        #f7e9e5;
+    z-index: -2;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -30px;
+    color: #d88b91;
+    opacity: 0;
+    pointer-events: none;
+    animation: floatUp linear infinite;
+    z-index: -1;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    20% { opacity: .6; }
+    100% {
+        transform: translateY(-110vh) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+/* Main screen */
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+
+.intro {
+    text-align: center;
+    transition: .8s ease;
+}
+
+.intro h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
+    color: #a45c66;
+    margin-bottom: 12px;
+}
+
+.intro p {
+    font-size: 1.2rem;
+    color: #815e60;
+    margin-bottom: 35px;
+}
+
+/* Envelope */
+.envelope-wrapper {
+    position: relative;
+    width: 260px;
+    height: 175px;
+    margin: 0 auto 35px;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.envelope {
+    position: absolute;
+    inset: 0;
+    background: #d99599;
+    border-radius: 5px;
+    box-shadow: 0 15px 35px #9d666633;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    border-left: 130px solid #e8b2ad;
+    border-right: 130px solid #e8b2ad;
+    border-top: 90px solid transparent;
+    z-index: 3;
+}
+
+.envelope::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    border-left: 130px solid transparent;
+    border-right: 130px solid transparent;
+    border-top: 100px solid #c77c85;
+    transform-origin: top;
+    transition: transform .7s ease;
+    z-index: 4;
+}
+
+.flap-open .envelope::after {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.seal {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background: #a64f5d;
+    border-radius: 50%;
+    top: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 25px;
+    z-index: 5;
+    transition: .4s;
+}
+
+.flap-open .seal {
+    opacity: 0;
+}
+
+.open-btn {
+    border: none;
+    background: #a45c66;
+    color: white;
+    padding: 13px 32px;
+    border-radius: 30px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 5px 15px #a45c6633;
+}
+
+.open-btn:hover {
+    background: #82434f;
+    transform: translateY(-3px);
+}
+
+/* Letter */
+.letter-container {
+    display: none;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 0 60px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s, transform 1s;
+}
+
+.letter-container.show {
+    display: block;
+    animation: reveal 1.2s forwards;
+}
+
+@keyframes reveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.paper {
+    background: #fffaf3;
+    padding: clamp(25px, 7vw, 65px);
+    border-radius: 4px;
+    box-shadow: 0 15px 50px #845d5d22;
+    border: 1px solid #eadbd0;
+    position: relative;
+}
+
+.paper::before {
+    content: "♥";
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: #d9a1a1;
+    font-size: 25px;
+}
+
+.paper h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: #a45c66;
+    margin-bottom: 30px;
+}
+
+.paper p {
+    font-size: 1.17rem;
+    line-height: 1.9;
+    margin-bottom: 22px;
+    color: #614749;
+    white-space: pre-line;
+}
+
+.paper .highlight {
+    font-weight: 600;
+    color: #a34f60;
+    font-style: italic;
+    font-size: 1.3rem;
+}
+
+.signature {
+    margin-top: 45px;
+    text-align: right;
+}
+
+.signature p {
+    margin-bottom: 5px;
+}
+
+.signature .script {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    color: #a45c66;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: #a45c66;
+}
+
+/* Back button */
+.back-btn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 10px 25px;
+    border: 1px solid #a45c66;
+    background: transparent;
+    color: #a45c66;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.back-btn:hover {
+    background: #a45c66;
+    color: white;
+}
+
+@media(max-width: 500px) {
+    .paper p {
+        font-size: 1.08rem;
+        line-height: 1.8;
+    }
+
+    .paper h2 {
+        font-size: 2.1rem;
+    }
+
+    .envelope-wrapper {
+        transform: scale(.9);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div id="hearts"></div>
+
+<main class="container">
+
+    <section class="intro" id="intro">
+
+        <h1>For My Mahal</h1>
+
+        <p>
+            I have something I've been wanting to tell you...
+        </p>
+
+        <div class="envelope-wrapper" id="envelope">
+            <div class="envelope"></div>
+            <div class="seal">♥</div>
+        </div>
+
+        <button class="open-btn" onclick="openLetter()">
+            Open my letter ♡
+        </button>
+
+        <p style="margin-top:20px;font-size:.95rem;">
+            A little something, written from my heart.
+        </p>
+
+    </section>
+
+    <section class="letter-container" id="letter">
+
+        <article class="paper">
+
+            <h2>Dear Mahal,</h2>
+
+            <p>
+Funny how this all started with just a roleplay, no?
+
+Who would've thought na by playing Nanay and Tatay, I'd end up falling for you? Honestly, I thought everything would end after our performance. Back to being classmates, a few hellos here and there, and that's it.
+
+Pero mali pala ako.
+            </p>
+
+            <p>
+Somewhere during those practices, I started looking forward to seeing you. It was supposed to be just acting, pero hindi ko na namalayan, may feelings na pala.
+            </p>
+
+            <p>
+I still remember our photobooth day. Hindi ko talaga maexplain what I was feeling that time. Kinakabahan ako, masaya, excited, lahat na. Simple lang naman siya, pero I still smile every time I think about it.
+            </p>
+
+            <p>
+Tapos yung "mahal." I thought we'd only say it during the roleplay, pero ayan, tinatawag pa rin natin ang isa't isa nun kahit tapos na. A word we used just for acting, and now it's my favorite thing to hear from you.
+            </p>
+
+            <p>
+And then all the little things. Holding hands, playing with your hair, leaning on each other's shoulders. Small stuff, pero somehow it makes an ordinary day feel special.
+            </p>
+
+            <p>
+Our McDo dates, cinema dates, street food, lugaw, even just sitting at our school's basketball court. I don't know if you know this, pero mas mahalaga sila sa akin than you think. Hindi naman mahalaga kung saan tayo pumunta. It's because you were there.
+            </p>
+
+            <p>
+I like how we're slowly getting to know each other, the questions, the kwentuhan, yung mga little things na nadidiscover ko about you. And I want more of that.
+            </p>
+
+            <p>
+I want to know the things you don't usually tell people. What makes you happy, what keeps you up at night, what scares you, what you're passionate about, even the things that are hard for you to talk about. Your childhood stories, your dreams, your random thoughts, lahat.
+            </p>
+
+            <p>
+Hindi lang yung version of you na nakangiti kapag kasama ako. I want to know you on your quiet days, your bad days, and the days you don't feel like being yourself. Kasi para sa akin, hindi lang ito about falling for you more. It's about understanding you and accepting all of you.
+            </p>
+
+            <p>
+Pero gusto ko ring maging honest sa'yo.
+
+Minsan, nalilito ako kung ano ba talaga tayo. We do things couples do, we're sweet, we make memories together, pero alam ko rin na hindi ka pa ready for commitment. And I don't want you to feel pressured.
+            </p>
+
+            <p>
+I respect your pace and your boundaries. I'm not writing this para madaliin ka or para humingi ng sagot. I just want you to know how I feel.
+            </p>
+
+            <p class="highlight">
+I like you, mahal. Mas higit pa sa inaakala ko noong una.
+            </p>
+
+            <p>
+I don't know where this is going, pero gusto ko pa ring ituloy ang pagkilala sa'yo. More ordinary days with you, more laughs, more memories. Ayokong magmadali. Gusto ko lang na natural lang tayong mag-grow, walang pilitan, walang expectations.
+            </p>
+
+            <p>
+I can't promise na magiging perfect ako. Pero I can promise na totoo ang intensyon ko.
+            </p>
+
+            <p>
+Thank you for turning a simple roleplay into something I'll never forget. Thank you for the laughs, the little moments, and for giving me reasons to look forward to seeing you.
+            </p>
+
+            <p>
+And if there's one thing I hope you'll never doubt, it's that what I feel for you is real.
+            </p>
+
+            <div class="signature">
+                <p>From your Tatay, who never expected to fall for his Nanay.</p>
+                <p style="margin-top:25px;">Your</p>
+                <p class="script">Mahal ❤️</p>
+            </div>
+
+            <div class="footer">
+                Always with affection ♡
+            </div>
+
+        </article>
+
+        <button class="back-btn" onclick="goBack()">
+            Close letter
+        </button>
+
+    </section>
+
+</main>
+
+<script>
+
+// Floating hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = Math.random() > 0.5 ? "♥" : "♡";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 22) + "px";
+    heart.style.animationDuration = (6 + Math.random() * 7) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 13000);
+}
+
+setInterval(createHeart, 500);
+
+// Open letter
+function openLetter() {
+    const intro = document.getElementById("intro");
+    const envelope = document.getElementById("envelope");
+    const letter = document.getElementById("letter");
+
+    envelope.classList.add("flap-open");
+
+    setTimeout(() => {
+        intro.style.display = "none";
+        letter.classList.add("show");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }, 850);
+}
+
+// Close letter
+function goBack() {
+    const intro = document.getElementById("intro");
+    const letter = document.getElementById("letter");
+
+    letter.classList.remove("show");
+    letter.style.display = "none";
+
+    intro.style.display = "block";
+
+    document.getElementById("envelope").classList.remove("flap-open");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
