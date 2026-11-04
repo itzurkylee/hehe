@@ -4,10 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Mahal </title>
+<title>For My Mahal 💜</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+/* =========================
+   GENERAL SETTINGS
+========================= */
 
 * {
     margin: 0;
@@ -17,31 +22,34 @@
 
 body {
     min-height: 100vh;
-    background: #f7e9e5;
-    color: #633d40;
+    color: #49345f;
     font-family: 'Cormorant Garamond', serif;
     overflow-x: hidden;
+    background: #eee5fa;
 }
 
-/* Background */
 .background {
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(circle at 20% 20%, #fff5ee 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, #f3d1d1 0%, transparent 40%),
-        #f7e9e5;
-    z-index: -2;
+        radial-gradient(circle at 15% 20%, #fffaff 0%, transparent 40%),
+        radial-gradient(circle at 85% 75%, #d9c1f2 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, #eadcf8 0%, transparent 70%),
+        #eee5fa;
+    z-index: -3;
 }
 
-/* Floating hearts */
+/* =========================
+   FLOATING HEARTS
+========================= */
+
 .heart {
     position: fixed;
-    bottom: -30px;
-    color: #d88b91;
+    bottom: -40px;
+    color: #a879cf;
     opacity: 0;
     pointer-events: none;
-    animation: floatUp linear infinite;
+    animation: floatUp linear forwards;
     z-index: -1;
 }
 
@@ -50,14 +58,21 @@ body {
         transform: translateY(0) rotate(0deg);
         opacity: 0;
     }
-    20% { opacity: .6; }
+
+    20% {
+        opacity: .65;
+    }
+
     100% {
         transform: translateY(-110vh) rotate(35deg);
         opacity: 0;
     }
 }
 
-/* Main screen */
+/* =========================
+   MAIN CONTAINER
+========================= */
+
 .container {
     min-height: 100vh;
     display: flex;
@@ -65,6 +80,10 @@ body {
     justify-content: center;
     padding: 25px;
 }
+
+/* =========================
+   INTRO SCREEN
+========================= */
 
 .intro {
     text-align: center;
@@ -74,17 +93,20 @@ body {
 .intro h1 {
     font-family: 'Dancing Script', cursive;
     font-size: clamp(2.8rem, 8vw, 4.5rem);
-    color: #a45c66;
+    color: #8955b5;
     margin-bottom: 12px;
 }
 
 .intro p {
     font-size: 1.2rem;
-    color: #815e60;
+    color: #765d8d;
     margin-bottom: 35px;
 }
 
-/* Envelope */
+/* =========================
+   ENVELOPE
+========================= */
+
 .envelope-wrapper {
     position: relative;
     width: 260px;
@@ -92,22 +114,33 @@ body {
     margin: 0 auto 35px;
     cursor: pointer;
     perspective: 1000px;
+    animation: gentleFloat 3s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
 }
 
 .envelope {
     position: absolute;
     inset: 0;
-    background: #d99599;
+    background: #b995dc;
     border-radius: 5px;
-    box-shadow: 0 15px 35px #9d666633;
+    box-shadow: 0 15px 35px #7950a533;
 }
 
 .envelope::before {
     content: "";
     position: absolute;
     bottom: 0;
-    border-left: 130px solid #e8b2ad;
-    border-right: 130px solid #e8b2ad;
+    border-left: 130px solid #d2b9ed;
+    border-right: 130px solid #d2b9ed;
     border-top: 90px solid transparent;
     z-index: 3;
 }
@@ -118,7 +151,7 @@ body {
     top: 0;
     border-left: 130px solid transparent;
     border-right: 130px solid transparent;
-    border-top: 100px solid #c77c85;
+    border-top: 100px solid #a77acb;
     transform-origin: top;
     transition: transform .7s ease;
     z-index: 4;
@@ -133,7 +166,7 @@ body {
     position: absolute;
     width: 48px;
     height: 48px;
-    background: #a64f5d;
+    background: #8151ac;
     border-radius: 50%;
     top: 65px;
     left: 50%;
@@ -151,9 +184,13 @@ body {
     opacity: 0;
 }
 
+/* =========================
+   BUTTONS
+========================= */
+
 .open-btn {
     border: none;
-    background: #a45c66;
+    background: #8955b5;
     color: white;
     padding: 13px 32px;
     border-radius: 30px;
@@ -161,15 +198,37 @@ body {
     font-size: 1.1rem;
     cursor: pointer;
     transition: .3s;
-    box-shadow: 0 5px 15px #a45c6633;
+    box-shadow: 0 5px 15px #8955b533;
 }
 
 .open-btn:hover {
-    background: #82434f;
+    background: #693b91;
     transform: translateY(-3px);
 }
 
-/* Letter */
+.back-btn {
+    display: block;
+    margin: 30px auto 0;
+    padding: 10px 25px;
+    border: 1px solid #8955b5;
+    background: transparent;
+    color: #8955b5;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: .3s;
+}
+
+.back-btn:hover {
+    background: #8955b5;
+    color: white;
+}
+
+/* =========================
+   LETTER ANIMATION
+========================= */
+
 .letter-container {
     display: none;
     width: 100%;
@@ -178,7 +237,6 @@ body {
     padding: 20px 0 60px;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 1s, transform 1s;
 }
 
 .letter-container.show {
@@ -193,12 +251,16 @@ body {
     }
 }
 
+/* =========================
+   LETTER PAPER
+========================= */
+
 .paper {
-    background: #fffaf3;
+    background: #fdfaff;
     padding: clamp(25px, 7vw, 65px);
-    border-radius: 4px;
-    box-shadow: 0 15px 50px #845d5d22;
-    border: 1px solid #eadbd0;
+    border-radius: 5px;
+    box-shadow: 0 15px 50px #75539a22;
+    border: 1px solid #e0d0f0;
     position: relative;
 }
 
@@ -207,14 +269,14 @@ body {
     position: absolute;
     top: 20px;
     right: 25px;
-    color: #d9a1a1;
+    color: #b995dc;
     font-size: 25px;
 }
 
 .paper h2 {
     font-family: 'Dancing Script', cursive;
     font-size: 2.5rem;
-    color: #a45c66;
+    color: #8955b5;
     margin-bottom: 30px;
 }
 
@@ -222,16 +284,20 @@ body {
     font-size: 1.17rem;
     line-height: 1.9;
     margin-bottom: 22px;
-    color: #614749;
+    color: #554365;
     white-space: pre-line;
 }
 
 .paper .highlight {
     font-weight: 600;
-    color: #a34f60;
+    color: #8955b5;
     font-style: italic;
     font-size: 1.3rem;
 }
+
+/* =========================
+   SIGNATURE
+========================= */
 
 .signature {
     margin-top: 45px;
@@ -245,7 +311,7 @@ body {
 .signature .script {
     font-family: 'Dancing Script', cursive;
     font-size: 2rem;
-    color: #a45c66;
+    color: #8955b5;
 }
 
 .footer {
@@ -253,29 +319,15 @@ body {
     margin-top: 30px;
     font-family: 'Dancing Script', cursive;
     font-size: 1.6rem;
-    color: #a45c66;
+    color: #8955b5;
 }
 
-/* Back button */
-.back-btn {
-    display: block;
-    margin: 30px auto 0;
-    padding: 10px 25px;
-    border: 1px solid #a45c66;
-    background: transparent;
-    color: #a45c66;
-    border-radius: 25px;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 1rem;
-}
-
-.back-btn:hover {
-    background: #a45c66;
-    color: white;
-}
+/* =========================
+   MOBILE RESPONSIVENESS
+========================= */
 
 @media(max-width: 500px) {
+
     .paper p {
         font-size: 1.08rem;
         line-height: 1.8;
@@ -288,7 +340,12 @@ body {
     .envelope-wrapper {
         transform: scale(.9);
     }
+
+    .signature p {
+        font-size: 1.05rem;
+    }
 }
+
 </style>
 </head>
 
@@ -296,7 +353,7 @@ body {
 
 <div class="background"></div>
 
-<div id="hearts"></div>
+<!-- INTRO SCREEN -->
 
 <main class="container">
 
@@ -308,9 +365,12 @@ body {
             I have something I've been wanting to tell you...
         </p>
 
-        <div class="envelope-wrapper" id="envelope">
+        <div class="envelope-wrapper" id="envelope"
+             onclick="openLetter()">
+
             <div class="envelope"></div>
             <div class="seal">♥</div>
+
         </div>
 
         <button class="open-btn" onclick="openLetter()">
@@ -322,6 +382,8 @@ body {
         </p>
 
     </section>
+
+    <!-- LOVE LETTER -->
 
     <section class="letter-container" id="letter">
 
@@ -400,9 +462,19 @@ And if there's one thing I hope you'll never doubt, it's that what I feel for yo
             </p>
 
             <div class="signature">
-                <p>From your Tatay, who never expected to fall for his Nanay.</p>
-                <p style="margin-top:25px;">Your</p>
-                <p class="script">Mahal ❤️</p>
+
+                <p>
+                    From your Tatay, who never expected to fall for his Nanay.
+                </p>
+
+                <p style="margin-top:25px;">
+                    Your
+                </p>
+
+                <p class="script">
+                    Mahal ❤️
+                </p>
+
             </div>
 
             <div class="footer">
@@ -419,62 +491,107 @@ And if there's one thing I hope you'll never doubt, it's that what I feel for yo
 
 </main>
 
+<!-- JAVASCRIPT -->
+
 <script>
 
-// Floating hearts
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = Math.random() > 0.5 ? "♥" : "♡";
+// FLOATING HEARTS
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (12 + Math.random() * 22) + "px";
-    heart.style.animationDuration = (6 + Math.random() * 7) + "s";
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML =
+        Math.random() > 0.5 ? "♥" : "♡";
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        (12 + Math.random() * 22) + "px";
+
+    heart.style.animationDuration =
+        (6 + Math.random() * 7) + "s";
 
     document.body.appendChild(heart);
 
     setTimeout(() => {
         heart.remove();
     }, 13000);
+
 }
 
 setInterval(createHeart, 500);
 
-// Open letter
+
+// OPEN LETTER
+
+let isOpening = false;
+
 function openLetter() {
-    const intro = document.getElementById("intro");
-    const envelope = document.getElementById("envelope");
-    const letter = document.getElementById("letter");
+
+    if (isOpening) return;
+
+    isOpening = true;
+
+    const intro =
+        document.getElementById("intro");
+
+    const envelope =
+        document.getElementById("envelope");
+
+    const letter =
+        document.getElementById("letter");
 
     envelope.classList.add("flap-open");
 
     setTimeout(() => {
+
         intro.style.display = "none";
+
+        letter.style.display = "block";
+
         letter.classList.add("show");
 
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
+
+        isOpening = false;
+
     }, 850);
+
 }
 
-// Close letter
+
+// CLOSE LETTER
+
 function goBack() {
-    const intro = document.getElementById("intro");
-    const letter = document.getElementById("letter");
+
+    const intro =
+        document.getElementById("intro");
+
+    const letter =
+        document.getElementById("letter");
 
     letter.classList.remove("show");
+
     letter.style.display = "none";
 
     intro.style.display = "block";
 
-    document.getElementById("envelope").classList.remove("flap-open");
+    document
+        .getElementById("envelope")
+        .classList.remove("flap-open");
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
+
 }
 
 </script>
